@@ -16,6 +16,7 @@
         </header>
         <main>
             <div v-for="film in films" class="film_container">
+                <img :src="'https://image.tmdb.org/t/p/w154' + film.backdrop_path" alt="">
                 <ul>
                     <li>titolo: {{film.title}}</li>
                     <li>titolo originale:{{film.original_title}}</li>
@@ -34,6 +35,7 @@
 
             </div>
             <div v-for="serie in series" class="film_container">
+                <img :src="'https://image.tmdb.org/t/p/w154' + serie.backdrop_path" alt="">
                 <ul>
                     <li>titolo:{{serie.name}}</li>
                     <li>titolo originale:{{serie.original_name}}</li>
