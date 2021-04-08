@@ -17,12 +17,12 @@
         <!-- inizio header -->
         <header>
             <div class="container">
-                <div class="logo">
+                <div @click="home" class="logo">
                     <img src="img/boolflix.png" alt="">
                 </div>
                 <div class="menu">
                     <ul>
-                        <li> <a href="">Home</a> </li>
+                        <li> <a @click="home" href="">Home</a> </li>
                         <li> <a href="">Serie tv</a> </li>
                         <li> <a href="">Film</a> </li>
                         <li> <a href="">La mia lista</a> </li>
@@ -31,8 +31,16 @@
                 </div>
                 <div class="search_bar">
                     <i @click="addtext" class="fas fa-search"></i>
-
                     <input type="text" v-model="searchTitle" @keyUp.enter="addtext">
+                    <i @click="deletetext" class="fas fa-times"></i>
+                </div>
+                <div class="option">
+                    <i class="far fa-bell"></i>
+                    <div class="utente">
+                        <i class="far fa-grin-beam"></i> 
+                        
+                    </div>
+                    <a href="">Log Out</a>
                 </div>
             </div>
         </header>
@@ -41,7 +49,9 @@
         <main>
             <div class="main_container">
                 <!-- film container -->
-                <!-- <div v-if="films.length == 0">Nessun risultato</div> -->
+                <div v-if="films.length == 0">
+                    <h1>Effettua una ricerca</h1>
+                </div>
                 <div v-for="film in films" class="film_container">
                     <div class="layover">
                     </div>
@@ -59,12 +69,10 @@
                             <span v-if="aviableFlags.includes(film.original_language)"> Lingua: <img :src="getFlag(film.original_language)" alt=""> </span>   
                             <p v-else>lingua: {{film.original_language}}</p>
                         </div>
-                        <ul>
-                            <li>
-                                <i class="fas fa-star" v-for="stars in film.vote_average"></i>
-                                <i class="far fa-star" v-for="stars in (5 - film.vote_average)"></i>
-                            </li>
-                        </ul>
+                        <div class="score">
+                            <i class="fas fa-star" v-for="stars in film.vote_average"></i>
+                            <i class="far fa-star" v-for="stars in (5 - film.vote_average)"></i>
+                        </div>
                         <div class="overview">
                             <p>{{film.overview}}</p>
 

@@ -42,7 +42,7 @@ header {
   display: inline;
 }
 
-.menu ul li a {
+a {
   text-decoration: none;
   color: white;
   padding: 0 10px;
@@ -53,9 +53,61 @@ header {
   align-self: center;
 }
 
-input {
+.logo {
+  cursor: pointer;
+}
+
+.search_bar {
+  display: flex;
+  align-items: center;
+  color: black;
+  background-color: white;
+  border-radius: 15px;
   padding: 10px;
+}
+
+.search_bar > i {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+input {
+  font-size: 15px;
+  padding: 0 5px;
   border-radius: 10px;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.option i {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.utente {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.utente i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
 }
 
 /* main */
@@ -77,6 +129,12 @@ input {
   overflow: hidden;
 }
 
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .img_notfound {
   width: 100%;
 }
@@ -94,15 +152,23 @@ input {
   position: absolute;
   top: 0;
   left: 10px;
-
   display: none;
   overflow-y: scroll;
   width: 100%;
   height: 100%;
+  padding: 20px;
 }
 
 .film_container:hover .film_info {
   display: block;
+}
+
+.film_info div {
+  margin: 10px 0;
+}
+
+.film_info i.fas {
+  color: yellow;
 }
 
 .title {

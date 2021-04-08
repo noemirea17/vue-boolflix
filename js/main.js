@@ -41,6 +41,13 @@ var app = new Vue({
           });
         });
     },
+    home() {
+      this.films = [];
+    },
+
+    deletetext() {
+      this.searchTitle = "";
+    },
 
     roundedVote(vote) {
       return Math.ceil(vote / 2);
