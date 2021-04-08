@@ -5,37 +5,49 @@ var app = new Vue({
   data: {
     searchTitle: "",
     films: [],
-    series: [],
     votes: [],
+    aviableFlags: ["de", "en", "es", "fr", "it"],
   },
 
   methods: {
     addtext: function () {
+      const self = this;
+
+      self.films = [];
       axios
         .get(
           "https://api.themoviedb.org/3/search/movie?api_key=60d77243c9ba552e841e00e4f6b5b02b&query=" +
-            this.searchTitle
+            self.searchTitle
         )
         .then((result) => {
-          this.films = result.data.results;
-          this.films.forEach((element) => {
-            element.vote_average = element.vote_average / 2;
-            element.vote_average = Math.ceil(element.vote_average);
+          const films = result.data.results;
+          self.films = self.films.concat(films);
+
+          self.films.forEach((element) => {
+            element.vote_average = self.roundedVote(element.vote_average);
           });
         });
       axios
         .get(
           "https://api.themoviedb.org/3/search/tv?api_key=60d77243c9ba552e841e00e4f6b5b02b&query=" +
-            this.searchTitle
+            self.searchTitle
         )
         .then((result) => {
-          console.log(result.data.results);
-          this.series = result.data.results;
-          this.series.forEach((element) => {
-            element.vote_average = element.vote_average / 2;
-            element.vote_average = Math.ceil(element.vote_average);
+          const films = result.data.results;
+          self.films = self.films.concat(films);
+
+          self.films.forEach((element) => {
+            element.vote_average = self.roundedVote(element.vote_average);
           });
         });
+    },
+
+    roundedVote(vote) {
+      return Math.ceil(vote / 2);
+    },
+
+    getFlag(language) {
+      return `img/${language}.png`;
     },
   },
 });
