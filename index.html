@@ -55,7 +55,7 @@
                 <div v-for="film in films" class="film_container">
                     <div class="layover">
                     </div>
-                    <img v-if="film.backdrop_path" :src="'https://image.tmdb.org/t/p/w342' + film.backdrop_path" alt="">
+                    <img v-if="film.poster_path" :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" alt="">
                     <img v-else src="img/not-found.png" class="img_notfound" alt="">
                     <div class="film_info">
                         <div v-if="(film.original_title || film.original_name == film.title || film.name)" class="film_title">
@@ -63,17 +63,18 @@
                         </div>
                         <div v-else class="film_title">
                             <h2 class="title">{{film.title}} {{film.name}}</h2>
-                            <p>titolo originale:{{film.original_title}} {{film.original_name}}</p>
+                            <p> <strong>Lingua originale:</strong>{{film.original_title}} {{film.original_name}}</p>
                         </div>
                         <div class="languages">
-                            <span v-if="aviableFlags.includes(film.original_language)"> Lingua: <img :src="getFlag(film.original_language)" alt=""> </span>   
-                            <p v-else>lingua: {{film.original_language}}</p>
+                            <span v-if="aviableFlags.includes(film.original_language)"> <strong>Lingua</strong>: <img :src="getFlag(film.original_language)" alt=""> </span>   
+                            <p v-else> <strong>Lingua</strong> {{film.original_language}}</p>
                         </div>
                         <div class="score">
                             <i class="fas fa-star" v-for="stars in film.vote_average"></i>
                             <i class="far fa-star" v-for="stars in (5 - film.vote_average)"></i>
                         </div>
                         <div class="overview">
+                            <p> <strong>Trama:</strong></p>
                             <p>{{film.overview}}</p>
 
                         </div>
