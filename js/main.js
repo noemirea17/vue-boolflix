@@ -5,7 +5,9 @@ var app = new Vue({
   data: {
     searchTitle: "",
     films: [],
+    series: [],
     votes: [],
+    genres: [],
     aviableFlags: ["de", "en", "es", "fr", "it"],
   },
 
@@ -14,6 +16,7 @@ var app = new Vue({
       const self = this;
 
       self.films = [];
+
       axios
         .get(
           "https://api.themoviedb.org/3/search/movie?api_key=60d77243c9ba552e841e00e4f6b5b02b&query=" +
@@ -40,7 +43,17 @@ var app = new Vue({
             element.vote_average = self.roundedVote(element.vote_average);
           });
         });
+      axios
+        .get(
+          "https://api.themoviedb.org/3/genre/movie/list?api_key=60d77243c9ba552e841e00e4f6b5b02b"
+        )
+        .then((result) => {
+          console.log(result.data);
+        });
     },
+
+    getgenre() {},
+
     home() {
       this.films = [];
     },
